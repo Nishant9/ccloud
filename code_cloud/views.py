@@ -2,14 +2,14 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.shortcuts import redirect
-
-
+from django.template import loader
 
 @login_required
 def index(request):
-        return HttpResponse("Hello, world. You're at the polls index.")
-
-
+    template = loader.get_template('index.html')
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
 
 def logout_view(request):
     logout(request)
