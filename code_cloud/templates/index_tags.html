@@ -1,0 +1,64 @@
+{% extends "index.html" %}
+
+{% block content %}
+      <p align="center">
+        <button type="button" class="btn btn-default">dfs/bfs <span class="badge">42</span></button>
+        <button type="button" class="btn btn-success">dp <span class="badge">42</span></button>
+        <button type="button" class="btn btn-danger">greedy <span class="badge">42</span></button>
+        <button type="button" class="btn btn-primary">math <span class="badge">42</span></button>
+        <button type="button" class="btn btn-warning">ad-hoc <span class="badge">42</span></button>
+        <button type="button" class="btn btn-info">DS <span class="badge">42</span></button>
+        <button type="button" class="btn btn-default">Default <span class="badge">42</span></button>
+        <br>
+        <button type="button" class="btn btn-primary">Primary <span class="badge">42</span></button>
+        <button type="button" class="btn btn-warning">Warning <span class="badge">42</span></button>
+        <button type="button" class="btn btn-success">Success <span class="badge">42</span></button>
+        <button type="button" class="btn btn-info">Info <span class="badge">42</span></button>
+        <button type="button" class="btn btn-danger">Danger <span class="badge">42</span></button>
+
+      </p>
+{% block problems %}
+<div class="row">
+        <div class="col-md-12">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+ </div>
+{%endblock problems %}
+{% endblock content%}
+
+{% block navbar %}
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation"><a href="{% url 'index' %}">Online Judges</a></li>
+  <li role="presentation" class="active"><a href="{% url 'tags'  %}">Tags</a></li>
+  <li role="presentation"><a href="{% url 'all_problems'  %}">All Problems</a></li>
+</ul>
+{% endblock navbar %}
