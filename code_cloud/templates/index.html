@@ -66,8 +66,8 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="#">Edit Profile</a></li>
+                <li><a href="#">Settings</a></li>
                 <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
                 <li><a href="/code_cloud/logout">Logout</a></li>
               </ul>
             </li>
@@ -77,8 +77,8 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">              Notifications <span class="badge">7</span></a>
               <ul class="dropdown-menu">
                 <li><a href="#">Edit Profile</a></li>
+                <li><a href="#">Settings</a></li>
                 <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
                 <li><a href="/code_cloud/logout">Logout</a></li>
               </ul>
             </li>
@@ -122,8 +122,10 @@
           </div>
         </div><!-- /.col-sm-4 -->
         <div class="col-sm-6">
-          <h1> Here Different Options like follow, or upload, or maybe github like contribution graph can come.</h1>
-          See <a href="https://github.com/loule/js-chart-widgets/" target="blank" > js-charts-widget</a>
+          <br><br>
+          <div id="myfirstchart"></div>
+          <!-- <h1> Here Different Options like follow, or upload, or maybe github like contribution graph can come.</h1> -->
+          <!-- See <a href="https://github.com/loule/js-chart-widgets/" target="blank" > js-charts-widget</a> -->
         </div>
       </div>
       {% endblock content %}
@@ -140,5 +142,23 @@
     <script src="{% static "bootstrap/assets/js/docs.min.js" %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{% static "bootstrap/assets/js/ie10-viewport-bug-workaround.js"%}"></script>
+    <script src="{% static "js-chart-widgets.min.js" %}"></script>
+    <script>
+      new Calendar({
+      append_to: 'myfirstchart',
+      num_weeks: 30,
+      day_size: 23,
+      data: [
+      ['2016-03-01', 13],
+      ['2015-10-05', 21],
+      // gaps are fine
+      ['2015-09-05', 1],
+      ['2015-12-05', 11],
+      ['2016-03-04', 27]
+      ],
+      color: '#0072ff'
+      });
+    </script>
+
   </body>
 </html>
