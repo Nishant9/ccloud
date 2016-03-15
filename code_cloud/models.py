@@ -8,6 +8,18 @@ class Problem(models.Model):
     EASY = 'ES'
     PUBLIC = 'PB'
     PRIVATE = 'PV'
+    CODECHEF = 'CC'
+    CODEFORCES = 'CF'
+    UVA = 'UV'
+    TOPCODER = 'TC'
+    SPOJ = 'SP'
+    OJ_CHOICES = (
+        (CODECHEF, 'Codechef'),
+        (UVA, 'UVa'),
+        (CODEFORCES, 'Codeforces'),
+        (TOPCODER, 'Topcoder'),
+        (SPOJ, 'Sphere Online Judge'),
+    )
     ACCESS_CHOICES = (
         (PUBLIC, 'Public'),
         (PRIVATE, 'Private'),
@@ -19,7 +31,7 @@ class Problem(models.Model):
     )
     name = models.CharField(max_length = 200)
     date_created = models.DateTimeField(auto_now_add = True)
-    online_judge = models.CharField(max_length = 200)
+    online_judge = models.CharField(max_length = 200, choices = OJ_CHOICES)
     difficulty = models.CharField(max_length = 2, choices = DIFFICULTY_CHOICES, default = EASY)
     access = models.CharField(max_length = 2, choices = ACCESS_CHOICES, default = PRIVATE)
     docfile = models.FileField(upload_to = 'documents/%Y/%m/%d')
