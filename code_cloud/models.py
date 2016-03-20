@@ -13,12 +13,14 @@ class Problem(models.Model):
     UVA = 'UV'
     TOPCODER = 'TC'
     SPOJ = 'SP'
+    NONE = 'NA'
     OJ_CHOICES = (
         (CODECHEF, 'Codechef'),
         (UVA, 'UVa'),
         (CODEFORCES, 'Codeforces'),
         (TOPCODER, 'Topcoder'),
         (SPOJ, 'Sphere Online Judge'),
+        (NONE, 'Not Applicable')
     )
     ACCESS_CHOICES = (
         (PUBLIC, 'Public'),
@@ -28,6 +30,7 @@ class Problem(models.Model):
         (DIFFICULT, 'Difficult'),
         (MEDIUM, 'Medium'),
         (EASY, 'Easy'),
+        (NONE, 'Not Applicable')
     )
     name = models.CharField(max_length = 200)
     date_created = models.DateTimeField(auto_now_add = True)
@@ -44,6 +47,6 @@ class Tags(models.Model):
     problem = models.ForeignKey(Problem, on_delete = models.CASCADE)
     tag = models.CharField(max_length = 50)
 
-class SHARE(models.Model):
+class Share(models.Model):
     problem = models.ForeignKey(Problem, on_delete = models.CASCADE)
     share_user = models.ForeignKey(AUTH_USER_MODEL)
