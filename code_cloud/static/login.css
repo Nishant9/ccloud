@@ -3,3 +3,16 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
+
+.dropdown-menu {
+    width: 50%;
+    background: white;
+}
+
+.navbar {
+    background: linear-gradient(to bottom,#485563, #29323c); /* Standard syntax */
+}
+
+#content {
+    margin-top: 20px;
+}

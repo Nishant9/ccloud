@@ -44,7 +44,7 @@
           </button>
           <a class="navbar-brand" href="#">Code Cloud</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar" class="nav navbar-right">
           <form class="navbar-form navbar-right" method="post" action="{% url 'django.contrib.auth.views.login' %}">
             {% csrf_token %}
             <div class="form-group">
@@ -53,48 +53,50 @@
             <div class="form-group">
               <input id="id_password" name="password" type="password" placeholder="Password" class="form-control">
             </div>
-            <button type="submit" value="login"  class="btn btn-success">Sign in</button>
+            <button type="submit" value="login"  class="btn btn-success">Log in</button>
             <input type="hidden" name="next" value="{{ next }}" />
           </form>
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-      </div>
+    <div id="content" class="container col-sm-6 col-sm-offset-3">
+      <h1> Create an Account</h1>
+      <br>
+      <form method="post"  class="form-horizontal" role="form" action="{% url 'code_cloud.views.adduser' %}" >
+        {% csrf_token %}
+        <div class="form-group">
+          <label class="control-label col-sm-3" for="username">Username:</label>
+          <div class="col-sm-7">
+            <input type="text" id="id_username" maxlength="30" name="username" class="form-control" placeholder="[a-zA-Z0-9@.+-_]">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-3" for="email">Email:</label>
+          <div class="col-sm-7">
+            <input class="form-control" placeholder="Enter email" id="id_email" maxlength="254" name="email" type="email">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-3" for="pwd">Password:</label>
+          <div class="col-sm-7"> 
+            <input id="id_password" maxlength="128" name="password"  type="password"  class="form-control" placeholder="Enter password">
+          </div>
+        </div>
+        <div class="form-group"> 
+          <div class="col-sm-offset-2 col-sm-8">
+            <div class="checkbox">
+              <label><input type="checkbox"> By clicking Create an account, you agree to our <a href="#">Terms</a> and that you have read our <a href="#">Data Policy</a>, including our <a href="#">Cookie Use</a>. </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group"> 
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" value="Create new user account"  class="btn btn-primary">Sign up</button>
+          </div>
+        </div>
+      </form>
     </div>
-
-    <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-      </div>
-
-      <hr>
-
-      <footer>
-        <p>&copy; 2015 Company, Inc.</p>
-      </footer>
-    </div> <!-- /container -->
 
 
     <!-- Bootstrap core JavaScript

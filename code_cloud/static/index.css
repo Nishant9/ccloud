@@ -1,6 +1,7 @@
 body {
   padding-top: 70px;
   padding-bottom: 30px;
+
 }
 
 .theme-dropdown .dropdown-menu {
@@ -17,3 +18,7 @@ body {
   width: auto;
 }
 
+
+.navbar {
+    background: linear-gradient(to bottom,#485563, #29323c); /* Standard syntax */
+}

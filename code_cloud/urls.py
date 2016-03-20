@@ -6,6 +6,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^accounts/login/$', auth_views.login, {'redirect_field_name': '/success/'}),
+    url(r'^accounts/register/$', views.adduser),
     url(r'^logout',views.logout_view, name='logged out'),
     url(r'^success/$', views.index),
     url(r'^tags/', TemplateView.as_view(template_name="index_tags.html"),name='tags'),
