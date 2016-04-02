@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% load bootstrap3 %}
+
+
+{% block content %}
+    <h1>Update Problem </h1>
+    <!-- <form method="POST" class="post-form" action="." enctype="multipart/form-data">{% csrf_token %} -->
+    <!--   <table> -->
+    <!--   {% bootstrap_form form  %} -->
+    <!--   </table> -->
+    <!--   <button type="submit" class="save btn btn-default">Save</button> -->
+    <!-- </form> -->
+
+    <form action="{%url 'update_problem' problem.id %}" method="post">{% csrf_token %}
+      {%bootstrap_form form %}
+      <input type="submit" value="Update" />
+    </form>
+{% endblock %}
+
+
+{% block navbar %}
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation"><a href="{% url 'index' %}">Online Judges</a></li>
+  <li role="presentation"><a href="{% url 'tags'  %}">Tags</a></li>
+  <li role="presentation"><a href="{% url 'all_problems'  %}">All Problems</a></li>
+  <li role="presentation" ><a href="{% url 'new_problem'  %}">Enter a new Problem</a></li>
+  <li role="presentation" class="active"><a href="#">Update Problem</a></li>
+</ul>
+{% endblock navbar %}

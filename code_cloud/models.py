@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from .current_user import get_current_user
 
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 class Problem(models.Model):
@@ -32,15 +33,19 @@ class Problem(models.Model):
         (EASY, 'Easy'),
         (NONE, 'Not Applicable')
     )
-    name = models.CharField(max_length = 200)
+    user = models.ForeignKey('auth.User', default=get_current_user)
+    name = models.CharField(max_length = 120)
     date_created = models.DateTimeField(auto_now_add = True)
     online_judge = models.CharField(max_length = 200, choices = OJ_CHOICES)
     difficulty = models.CharField(max_length = 2, choices = DIFFICULTY_CHOICES, default = EASY)
     access = models.CharField(max_length = 2, choices = ACCESS_CHOICES, default = PRIVATE)
     docfile = models.FileField(upload_to = 'documents/%Y/%m/%d')
 
+    def __str__(self):
+        return str(self.name) + " " + str(self.docfile)
+
 class Notifications(models.Model):
-    userid = models.ForeignKey(AUTH_USER_MODEL)
+    user = models.ForeignKey('auth.User', default=get_current_user)
     notification = models.CharField(max_length = 400)
 
 class Tags(models.Model):

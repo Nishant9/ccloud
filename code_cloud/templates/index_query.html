@@ -18,7 +18,7 @@
     </thead>
     <tbody>
       {% for problem in problem_list %}
-      <tr>
+        <tr>
         <td>
           <input class="no-margin" type="checkbox">
         </td>
@@ -38,7 +38,7 @@
             </button>
           </form>
         </td>
-      </tr>
+        </tr>
       {% endfor %}
     </tbody>
   </table>
@@ -50,7 +50,8 @@
 <ul class="nav nav-tabs" role="tablist">
   <li role="presentation"><a href="{% url 'index' %}">Online Judges</a></li>
   <li role="presentation"><a href="{% url 'tags'  %}">Tags</a></li>
-  <li role="presentation" class="active"><a href="#">All Problems</a></li>
+  <li role="presentation"><a href="{% url 'all_problems'  %}">All Problems</a></li>
   <li role="presentation"><a href="{% url 'new_problem'  %}">Enter a new Problem</a></li>
+  <li role="presentation" class="active"><a href="{% url 'query'  %}">Query</a></li>
 </ul>
 {% endblock navbar %}

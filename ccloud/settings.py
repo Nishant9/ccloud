@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap3',
     'code_cloud',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -49,6 +50,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'code_cloud.current_user.CurrentUserMiddleware',
 ]
 
 ROOT_URLCONF = 'ccloud.urls'

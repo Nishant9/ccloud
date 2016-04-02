@@ -1,5 +1,6 @@
 {% load staticfiles %}
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,12 +22,6 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static "index.css" %}" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
 
   <body role="document">
@@ -100,6 +95,7 @@
         <li role="presentation" class="active"><a href="#">Online Judges</a></li>
         <li role="presentation"><a href="{% url 'tags'  %}">Tags</a></li>
         <li role="presentation"><a href="{% url 'all_problems'  %}">All Problems</a></li>
+        <li role="presentation"><a href="{% url 'new_problem'  %}">Enter a new Problem</a></li>
       </ul>
       {% endblock navbar %}
 
@@ -107,18 +103,21 @@
       <div class="row">
         <div class="col-sm-4">
           <div class="list-group">
-            <a href="{% url 'all_problems'  %}" class="list-group-item">
-              <h4 class="list-group-item-heading">SPOJ</h4>
+            <form action="{% url 'query'  %}" method="get">
+              <button name="oj" class="list-group-item"  value="SP">              <h4 class="list-group-item-heading">SPOJ</h4>
               <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            </a>
-            <a href="{% url 'all_problems'  %}" class="list-group-item">
-              <h4 class="list-group-item-heading">Codeforces</h4>
+              </button>
+            </form>
+            <form action="{% url 'query'  %}" method="get">
+              <button name="oj" class="list-group-item"  value="CF">              <h4 class="list-group-item-heading">Codeforces</h4>
               <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            </a>
-            <a href="{% url 'all_problems'  %}" class="list-group-item">
-              <h4 class="list-group-item-heading">Codechef</h4>
+              </button>
+            </form>
+            <form action="{% url 'query'  %}" method="get">
+              <button name="oj" class="list-group-item"  value="CC">              <h4 class="list-group-item-heading">Codechef</h4>
               <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            </a>
+              </button>
+            </form>
           </div>
         </div><!-- /.col-sm-4 -->
         <div class="col-sm-6">
@@ -133,10 +132,10 @@
     </div> <!-- /container -->
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- <\!-- Bootstrap core JavaScript -->
+    <!-- ================================================== -\-> -->
+    <!-- <\!-- Placed at the end of the document so the pages load faster -\-> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
     <script>window.jQuery || document.write('<script src="{% static "bootstrap/assets/js/vendor/jquery.min.js"%}"><\/script>')</script>
     <script src="{% static "bootstrap/dist/js/bootstrap.min.js"%}"></script>
     <script src="{% static "bootstrap/assets/js/docs.min.js" %}"></script>
@@ -158,6 +157,12 @@
       ],
       color: '#0072ff'
       });
+
+    </script>
+    <script language="javascript" type="text/javascript">
+      function resizeIframe(obj) {
+      obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+      }
     </script>
 
   </body>

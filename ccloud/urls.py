@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from code_cloud import views
 
 urlpatterns = [
     url(r'^code_cloud/', include('code_cloud.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^(?P<page>.+\.(html|css))$', views.StaticView.as_view()),
+
 ]
