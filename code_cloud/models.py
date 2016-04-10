@@ -51,6 +51,8 @@ class Notifications(models.Model):
 class Tags(models.Model):
     problem = models.ForeignKey(Problem, on_delete = models.CASCADE)
     tag = models.CharField(max_length = 50)
+    def __str__(self) :
+        return str(self.tag)
 
 class Share(models.Model):
     problem = models.ForeignKey(Problem, on_delete = models.CASCADE)

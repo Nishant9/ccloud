@@ -8,11 +8,17 @@ from django.contrib.auth import login
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.views.generic.base import TemplateView
-from .models import Problem
+from .models import Problem, Tags
 from django.template import TemplateDoesNotExist
 from django.http import Http404
 from django.views.generic.edit import UpdateView, DeleteView
-from .forms import ProblemForm
+from .forms import ProblemForm, TagForm
+from uuid import uuid4
+from pygments.lexers import get_lexer_for_filename
+from pygments.formatters import HtmlFormatter
+from pygments import highlight
+from django.views.decorators.csrf import csrf_exempt
+
 
 @login_required
 def index(request):
@@ -47,8 +53,11 @@ def adduser(request):
 def allproblemsview(request):
 
     template = loader.get_template('index_all_problems.html')
+    problem_list = Problem.objects.filter(user = request.user)
+    zip_list = [([str(t) for t in Tags.objects.filter(problem = p)],p) for p in problem_list]
+    print(zip_list)
     context = Context({
-        'problem_list' : Problem.objects.filter(user = request.user)
+        'problem_list' : zip_list
     })
     return HttpResponse(template.render(context))
 
@@ -56,26 +65,40 @@ def allproblemsview(request):
 def query(request):
     oj = request.GET.get('oj',None)
     tag = request.GET.get('tag',None)
+    search = request.GET.get('search',None)
     problem_list = Problem.objects.filter(user = request.user)
     if oj != None :
         problem_list = problem_list.filter(online_judge = oj)
     if tag != None :
-        problem_list = Tags.objects.filter(problem__in = problem_list).values_list('problem', flat=True)
-
+        print(tag)
+        problem_list = Tags.objects.filter(tag = tag).filter(problem__in = problem_list).values_list('problem_id', flat=True)
+        problem_list = [Problem.objects.get(id = p) for p in problem_list]
+    if search != None :
+        problem_list = problem_list.filter(name__icontains = search)
+    zip_list = [([str(t) for t in Tags.objects.filter(problem = p)],p) for p in problem_list]
     template = loader.get_template('index_query.html')
     context = Context({
-        'problem_list' : problem_list,
+        'problem_list' : zip_list,
     })
     return HttpResponse(template.render(context))
 
 @login_required
 def view_problem(request):
 
-    template = loader.get_template('index_view_problem.html')
+    problem = Problem.objects.filter(id = request.GET.get('pid'))[0]
+    f = open(str(problem.docfile), 'r')
+    code = f.read()
+    f.close()
+    formatter = HtmlFormatter()
+    formatter.noclasses = True
+    lexer = get_lexer_for_filename(str(problem.docfile))
     context = Context({
-        'problem' : Problem.objects.filter(id = request.GET.get('pid'))[0]
+        'problem' : problem,
+        'highlighted_code' : highlight(code, lexer, formatter)
     })
-    return HttpResponse(template.render(context))
+    return render(request, 'index_view_problem.html', context)
+
+
 
 
 class StaticView(TemplateView):
@@ -101,3 +124,12 @@ class ProblemDelete(DeleteView):
     model = Problem
     success_url = '/code_cloud'
     template_name='problem_confirm_delete.html'
+
+@csrf_exempt
+def edit_tag(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/code_cloud')
+    if request.method == 'POST':
+        form = TagForm(request.POST)
+        form.save()
+        return HttpResponseRedirect(request.META['HTTP_REFERER'])

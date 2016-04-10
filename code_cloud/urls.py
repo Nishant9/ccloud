@@ -17,7 +17,7 @@ urlpatterns = [
     url(r'^update_problem/(?P<pk>\d+)$', views.ProblemUpdate.as_view(),name='update_problem'),
     url(r'^delete_problem/(?P<pk>\d+)$', views.ProblemDelete.as_view(),name='delete_problem'),
     url(r'^query/',views.query, name='query'),
-    url(r'^edit_tags/', CreateView.as_view(template_name='registration/adduser.html', form_class=TagForm, success_url='/code_cloud/'),name='edit_tag'),
+    url(r'^edit_tags/', views.edit_tag, name='edit_tag'),
     url(r'^view_problem/',views.view_problem, name='view_problem'),
     url(r'^(?P<page>.+\.(html|.css))$', views.StaticView.as_view()),
 ]

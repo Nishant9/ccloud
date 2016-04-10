@@ -17,7 +17,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for problem in problem_list %}
+      {% for tags, problem in problem_list %}
       <tr>
         <td>
           <input class="no-margin" type="checkbox">
@@ -28,7 +28,9 @@
         <td class="hidden-phone">{{ problem.get_online_judge_display  }}</td>
         <td class="hidden-phone">{{ problem.get_access_display  }}</td>
         <td class="hidden-phone">
-          <span class="label label label-info">New</span>
+          {% for t in  tags  %}
+          <span class="label label label-info">{{ t }}</span>
+          {% endfor %}
         </td>
         <td class="hidden-phone">{{problem.date_created}}</td>
         <td class="hidden-phone">
