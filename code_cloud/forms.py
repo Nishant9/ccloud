@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.forms import ModelForm
-from .models import Problem, Tags
+from .models import Problem, Tags, Share
 
 class UserForm(ModelForm):
     class Meta:
@@ -17,3 +17,8 @@ class TagForm(ModelForm):
     class Meta:
         model = Tags
         fields = ('tag', 'problem')
+
+class ShareForm(ModelForm):
+    class Meta:
+        model = Share
+        fields = ('problem', 'share_user')

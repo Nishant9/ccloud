@@ -21,5 +21,4 @@ urlpatterns = [
     url(r'^code_cloud/', include('code_cloud.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^(?P<page>.+\.(html|css))$', views.StaticView.as_view()),
-
 ]

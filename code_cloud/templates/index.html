@@ -44,7 +44,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <div class="col-sm-3 col-md-3">
-            <form class="navbar-form" role="search" action="" action="{% url 'query'  %}" method="get" >
+            <form class="navbar-form" role="search" action="{% url 'query'  %}" method="get" >
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search" name="search"   id="srch-term">
                 <div class="input-group-btn">
@@ -71,17 +71,6 @@
               </ul>
             </li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">              Notifications <span class="badge">7</span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Edit Profile</a></li>
-                <li><a href="#">Settings</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="/code_cloud/logout">Logout</a></li>
-              </ul>
-            </li>
-          </ul>
 
         </div><!--/.nav-collapse -->
       </div>
@@ -97,8 +86,9 @@
       {% block navbar %}
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#">Online Judges</a></li>
-        <li role="presentation"><a href="{% url 'tags'  %}">Tags</a></li>
+        <!-- <li role="presentation"><a href="{% url 'tags'  %}">Tags</a></li> -->
         <li role="presentation"><a href="{% url 'all_problems'  %}">All Problems</a></li>
+        <li role="presentation" ><a href="{% url 'shared_problems'  %}">Shared with you</a></li>
         <li role="presentation"><a href="{% url 'new_problem'  %}">Enter a new Problem</a></li>
       </ul>
       {% endblock navbar %}
@@ -151,14 +141,7 @@
       append_to: 'myfirstchart',
       num_weeks: 30,
       day_size: 23,
-      data: [
-      ['2016-03-01', 13],
-      ['2015-10-05', 21],
-      // gaps are fine
-      ['2015-09-05', 1],
-      ['2015-12-05', 11],
-      ['2016-03-04', 27]
-      ],
+      data: {% autoescape off %}{{ graph_data }}{% endautoescape %},
       color: '#0072ff'
       });
 

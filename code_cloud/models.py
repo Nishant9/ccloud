@@ -57,3 +57,5 @@ class Tags(models.Model):
 class Share(models.Model):
     problem = models.ForeignKey(Problem, on_delete = models.CASCADE)
     share_user = models.ForeignKey(AUTH_USER_MODEL)
+    def __str__(self) :
+        return str(self.problem) + 'shared with ' + str(self.share_user)
